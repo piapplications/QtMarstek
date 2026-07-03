@@ -9,4 +9,9 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 find_package(Qt6 REQUIRED COMPONENTS Core Network)
 
+set(CMAKE_AUTOMOC ON)
+
 add_subdirectory(src)
+#add_subdirectory(examples)
+add_subdirectory(examples/Console)
+#add_subdirectory(tests)
