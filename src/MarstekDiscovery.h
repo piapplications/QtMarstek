@@ -5,19 +5,12 @@
 #include <QObject>
 #include <QHash>
 #include <QHostAddress>
-#include "MarstekTransport.h"
-#include "MarstekProtocol.h"
+#include "MarstekDiscoveryInfo.h"
 
 namespace QtMarstek {
 
     class MarstekDevice;
-
-    class MarstekDiscoveryPrivate {
-        public:
-            MarstekTransport transport;
-            MarstekProtocol protocol;
-            QHash<QHostAddress,MarstekDevice*> devices;
-    };
+    class MarstekDiscoveryPrivate;
 
     /**
      * @brief Discovers Marstek devices on the local network.
@@ -27,7 +20,7 @@ namespace QtMarstek {
 
     public:
         explicit MarstekDiscovery(QObject*  pParent = nullptr);
-        ~MarstekDiscovery() = default;
+        ~MarstekDiscovery() override;
 
         bool start();
         void stop();
@@ -42,6 +35,8 @@ namespace QtMarstek {
         void onDiscoveryReceived(const MarstekDiscoveryInfo& info);
 
     private:
+        void updateDevice(const MarstekDiscoveryInfo& info);
+
         Q_DISABLE_COPY_MOVE(MarstekDiscovery)
         std::unique_ptr<MarstekDiscoveryPrivate> _upD;
     };
