@@ -13,5 +13,6 @@ struct MarstekDiscoveryInfo {
     QString macAddress;
     QHostAddress ipAddress;
 };
+Q_DECLARE_METATYPE(MarstekDiscoveryInfo)
 
 #endif // MARSTEKDISCOVERYINFO_H

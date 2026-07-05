@@ -40,6 +40,7 @@ namespace QtMarstek {
 
     private:
         friend class MarstekDiscovery;
+        friend class MarstekDiscoveryPrivate;
         friend class MarstekProtocol;
 
         void setName(const QString &name);

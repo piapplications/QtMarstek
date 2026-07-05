@@ -164,3 +164,65 @@ Suivi :
 | QTM-008 | Automatic refresh       | ⏳   |
 | QTM-009 | Widgets example         | ⏳   |
 | QTM-010 | Documentation 1.0       | ⏳   |
+
+QTM-001
+=======
+| Étape | Contenu                 | Fichiers        |
+| ----- | ----------------------- | --------------- |
+| 1     | `MarstekDevice`         | 2 fichiers      |
+| 2     | `MarstekTransport`      | 2 fichiers      |
+| 3     | `MarstekDiscovery`      | 2 fichiers      |
+| 4     | `MarstekPacket` minimal | 2 fichiers      |
+| 5     | Exemple Console         | 2 fichiers      |
+| 6     | Tests                   | 2 ou 3 fichiers |
+
+QTM-002
+=======
+QTM-002
+│
+├── MarstekPacketReader
+├── MarstekPacketWriter
+├── MarstekEndian
+├── CRC16
+└── Tests
+
+src/
+│
+├── MarstekPacketReader.h
+├── MarstekPacketReader.cpp
+│
+├── MarstekPacketWriter.h
+├── MarstekPacketWriter.cpp
+│
+├── MarstekEndian.h
+│
+└── MarstekCrc16.h
+
+tests/
+│
+├── TestMarstekPacketReader.cpp
+└── TestMarstekPacketWriter.cpp
+
+MarstekEndian sera un simple utilitaire.
+
+Exemple :
+    quint16 readUInt16BE(const uchar*);
+    quint32 readUInt32BE(const uchar*);
+    void writeUInt16BE(...);
+
+Ensuite, lorsque nous aurons commencé à analyser les captures réseau de la Venus A, nous n'aurons plus qu'à écrire :
+
+    reader.readMac();
+    reader.readString();
+    reader.readUInt16();
+
+sans jamais refaire de conversions d'endianness.
+
+QTM-003
+=======
+QTM-003
+│
+├── Packet parser
+├── Packet builder
+├── Discovery decoder
+└── Tests
